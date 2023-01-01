@@ -2,7 +2,7 @@
 #include <math.h>
 #include <iostream>
                                                                                                                               
-Reduite_put::Reduite_put(double t, double l,int m, int n,double mu): Parent(t, l, m, n, mu)
+Reduite_put::Reduite_put(double t, double l,int m, int n): Parent(t, l, m, n)
 {
     matrix = new double *[m+1];
     for (int i = 0 ; i < m+1 ; i++)
@@ -33,7 +33,6 @@ void Reduite_put::Solution(double K, double r, double sig)
     double L = get_L();    
     int M = get_M();
     int N = get_N();
-    double Mu = get_Mu();
     double Dt = T/M;
     double Ds = L/N;                                                                                                         
                                                                                                          
@@ -48,8 +47,8 @@ void Reduite_put::Solution(double K, double r, double sig)
         matrix[M][j] = exp(0.5*((2*r/pow(sig,2))-1)*log(Ds*j/K))*Maximum(0.0,1 - exp(log(Ds*j/K)));
     }
 
-    double a = (1 + 2*Mu*Dt/pow(Ds,2));
-    double b = (-Mu*Dt/pow(Ds,2));
+    double a = (1 + 2*Dt/pow(Ds,2));
+    double b = (-Dt/pow(Ds,2));
 
     double **A = new double*[N-1];
     for (int i = 0 ; i < (N-1) ; i++)
@@ -100,7 +99,7 @@ void Reduite_put::Solution(double K, double r, double sig)
     delete[] A;
 }
 
-Reduite_call::Reduite_call(double t, double l,int m, int n,double mu): Parent(t, l, m, n, mu)
+Reduite_call::Reduite_call(double t, double l,int m, int n): Parent(t, l, m, n)
 {
     matrix = new double *[m+1];
     for (int i = 0 ; i < m+1 ; i++)
@@ -131,7 +130,6 @@ void Reduite_call::Solution(double K, double r,double sig)
     double L = get_L();    
     int M = get_M();
     int N = get_N();
-    double Mu = get_Mu();
     double Dt = T/M;
     double Ds = L/N;                                                                                                         
                                                                                                          
@@ -146,8 +144,8 @@ void Reduite_call::Solution(double K, double r,double sig)
         matrix[M][j] = exp(0.5*((2*r/pow(sig,2))-1)*log(Ds*j/K))*Maximum(0.0,exp(log(Ds*j/K)) - 1);
     }
 
-    double a = (1 + 2*Mu*Dt/pow(Ds,2));
-    double b = (-Mu*Dt/pow(Ds,2));
+    double a = (1 + 2*Dt/pow(Ds,2));
+    double b = (-Dt/pow(Ds,2));
 
     double **A = new double*[N-1];
     for (int i = 0 ; i <(N-1) ; i++)

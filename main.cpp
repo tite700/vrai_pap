@@ -8,30 +8,36 @@
 
 int main(){
 
-    Complete_put put_c = Complete_put(1.0,300.0,1000,1000,1);
+    Complete_put put_c = Complete_put(1.0,300.0,1000,1000);
     put_c.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 40 ; i++)
+    /*for(int i = 0 ; i < 100 ; i++)
     {
         std::cout<<put_c(0,i)<<std::endl;
     }*/
 
-    Complete_call call_c = Complete_call(1.0,300.0,1000,1000,1);
+    std::cout<<"/////////////////////////////"<<std::endl;
+
+    Complete_call call_c = Complete_call(1.0,300.0,1000,1000);
     call_c.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 40 ; i++)
+    /*for(int i = 0 ; i < 1000 ; i++)
     {
         std::cout<<call_c(0,i)<<std::endl;
     }*/
+    
+    std::cout<<"/////////////////////////////"<<std::endl;
 
-    Reduite_put put_r = Reduite_put(1.0,300.0,1000,1000,1);
+    Reduite_put put_r = Reduite_put(1.0,300.0,1000,1000);
     put_r.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 40 ; i++)
+    /*for(int i = 0 ; i < 100 ; i++)
     {
         std::cout<<put_r(0,i)<<std::endl;
     }*/
 
-    Reduite_call call_r = Reduite_call(1.0,300.0,1000,1000,1);
+    std::cout<<"/////////////////////////////"<<std::endl;
+
+    Reduite_call call_r = Reduite_call(1.0,300.0,1000,1000);
     call_r.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 40 ; i++)
+    /*for(int i = 0 ; i < 1000 ; i++)
     {
         std::cout<<call_r(0,i)<<std::endl;
     }*/
@@ -40,6 +46,23 @@ int main(){
     /* ESSAI D'AFFICHAGE */
     /*----------*/
 
+    // Courbe exemple pour Graph
+
+    Graph graph(640, 480, "Ma courbe");
+
+    const int n = 100;
+    float values[n][2];
+    for (int i = 0; i < n; ++i) {
+        values[i][0] = static_cast<float>(i) / n;
+        values[i][1] = std::sin(2 * M_PI * values[i][0]);
+    }
+    for (int i = 0; i < n; ++i) {
+        graph.addPoint(values[i][0], values[i][1]);
+    }
+
+    graph.draw();
+
+    /*------------------------------------------------------------------------*/
     // Création de l'objet graphique
     Graph graph1(640, 480, "put_c");
     Graph graph2(640, 480, "call_c");

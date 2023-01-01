@@ -1,11 +1,10 @@
 #include "Parent.h"
 
-Parent::Parent(double t, double l, int m, int n, double mu){
+Parent::Parent(double t, double l, int m, int n){
     T = t;
     L = l;
     M = m;
     N = n;
-    Mu = mu;
 }
 
 void Parent::Multiplication(double **A, double*C_,double *delta,double *P,int N){

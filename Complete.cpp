@@ -1,7 +1,7 @@
 #include "Complete.h"
 #include <math.h>
                                                                                                                               
-Complete_put::Complete_put(double t, double l,int m, int n,double mu): Parent(t, l, m, n, mu)
+Complete_put::Complete_put(double t, double l,int m, int n): Parent(t, l, m, n)
 {
     matrix = new double *[m+1];
     for (int i = 0 ; i < m+1 ; i++)
@@ -124,7 +124,7 @@ void Complete_put::Solution(double K, double r, double sig)
 }
 
 
-Complete_call::Complete_call(double t, double l,int m, int n,double mu): Parent(t, l, m, n, mu)
+Complete_call::Complete_call(double t, double l,int m, int n): Parent(t, l, m, n)
 {
     matrix = new double *[m+1];
     for (int i = 0 ; i < m+1 ; i++)
