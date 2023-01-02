@@ -5,42 +5,44 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <cmath> 
+
 
 int main(){
 
     Complete_put put_c = Complete_put(1.0,300.0,1000,1000);
     put_c.Solution(100.0,0.1,0.1);
-    for(int i = 0 ; i < 100 ; i++)
+    /*for(int i = 0 ; i < 1000 ; i++)
     {
         std::cout<<put_c(0,i)<<std::endl;
-    }
+    }*/
 
     std::cout<<"/////////////////////////////"<<std::endl;
 
     Complete_call call_c = Complete_call(1.0,300.0,1000,1000);
     call_c.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 1000 ; i++)
+    /* for(int i = 0 ; i < 1000 ; i++)
     {
         std::cout<<call_c(0,i)<<std::endl;
-    }*/
+    } */
     
     std::cout<<"/////////////////////////////"<<std::endl;
 
     Reduite_put put_r = Reduite_put(1.0,300.0,1000,1000);
     put_r.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 100 ; i++)
+    /* for(int i = 0 ; i < 1000 ; i++)
     {
         std::cout<<put_r(0,i)<<std::endl;
-    }*/
+    } */
 
     std::cout<<"/////////////////////////////"<<std::endl;
 
     Reduite_call call_r = Reduite_call(1.0,300.0,1000,1000);
     call_r.Solution(100.0,0.1,0.1);
-    /*for(int i = 0 ; i < 1000 ; i++)
+    for(int i = 0 ; i < 1000 ; i++)
     {
         std::cout<<call_r(0,i)<<std::endl;
-    }*/
+    }
 
     /*----------*/
     /* ESSAI D'AFFICHAGE */
@@ -69,6 +71,8 @@ int main(){
     Graph graph2(640, 480, "call_c");
     Graph graph3(640, 480, "put_r");
     Graph graph4(640, 480, "call_r");
+    Graph graph5(640, 480, "err_call");
+    Graph graph6(640, 480, "err_put");
 
     // Ajout des valeurs au graphique
     for (int i=0;i<40;i++){
@@ -76,13 +80,17 @@ int main(){
         graph2.addPoint(i, call_c(0,i));
         graph3.addPoint(i, put_r(0,i));
         graph4.addPoint(i, call_r(0,i));
+        graph5.addPoint(i, std::abs(put_c(0,i) - put_r(0,i)));
+        graph5.addPoint(i, std::abs(call_c(0,i) - call_r(0,i)));
     }
 
     // Affichage du graphique
     graph1.draw();
     graph2.draw();
     graph3.draw();
-    graph4.draw();  
+    graph4.draw();
+    graph5.draw();
+    graph6.draw();  
 
     
     bool running = true;
